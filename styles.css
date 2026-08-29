@@ -3,7 +3,7 @@
    Palette and materials lifted from the app's own design tokens
    (src/theme/tokens.ts). Warm paper ground, soft warm-ink edges,
    candy washes, small tilts, chunky hand font. Deliberately calm:
-   no harsh outlines, no solid-black shadows.
+   no harsh outlines, no solid-black shadows. Single light theme by design.
    ══════════════════════════════════════════════════════════════ */
 
 :root {
@@ -19,18 +19,11 @@
   --chunk:"Baloo 2", system-ui, sans-serif;
   --body:"Nunito", system-ui, -apple-system, sans-serif;
   --wrap:1140px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:#373D33; --surface:#464E41; --surface2:#555E4F;
-    --text:#F2F4F0; --dim:#CBD1C5; --faint:#BCC3B6;
-    --edge:rgba(242,244,240,.28); --line:rgba(242,244,240,.15); --line-soft:rgba(242,244,240,.09);
-    --accent:#6FDD93; --accent-edge:#4CBE72; --accent-deep:#A6EDBE; --on-accent:#12301B;
-    --accent-wash:#456650; --leaf:#BCEBAA; --leaf-wash:#4C6B42;
-    --coral:#F9BBAA; --coral-wash:#6B483E; --gold:#F6D584; --gold-wash:#6B5C3B;
-    --shadow:rgba(0,0,0,.34); --shadow-2:rgba(0,0,0,.26);
-  }
+  /* Pinned, not adaptive. The warm paper IS Flipp's identity, so the landing
+     page keeps it whatever the visitor's OS is set to; dark mode is a
+     reading-comfort feature and it lives inside the app. color-scheme also
+     stops the browser darkening scrollbars and the canvas behind the page. */
+  color-scheme: light;
 }
 
 *,*::before,*::after{box-sizing:border-box}

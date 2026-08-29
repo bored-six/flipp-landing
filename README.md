@@ -11,13 +11,20 @@ no dependencies. `index.html`, `styles.css`, `script.js`.
 The page borrows its materials directly from the app's own design tokens
 (`src/theme/tokens.ts` in the Flipp repo) rather than inventing a second brand:
 
-| Token | Light | Dark |
-|---|---|---|
-| Paper ground | `#FAF3E1` | `#373D33` |
-| Ink | `#27362B` | `#F2F4F0` |
-| Accent (hero green) | `#5FD184` | `#6FDD93` |
-| Gold (streaks) | `#AC761C` | `#F6D584` |
-| Coral (margin rule) | `#C24E38` | `#F9BBAA` |
+| Token | Value |
+|---|---|
+| Paper ground | `#FAF3E1` |
+| Ink | `#27362B` |
+| Accent (hero green) | `#5FD184` |
+| Gold (streaks) | `#AC761C` |
+| Coral (margin rule) | `#C24E38` |
+
+**The page is a single light theme on purpose.** It does not follow
+`prefers-color-scheme`. The warm paper is Flipp's identity and this page is a
+first impression, so it stays paper for everyone; dark mode is a reading-comfort
+feature and it belongs inside the app, which has its own. `:root` also declares
+`color-scheme: light` so a visitor on a dark OS does not get auto-darkened
+scrollbars or a dark canvas behind the page.
 
 Type is the app's own trio — Patrick Hand for handwriting, Baloo 2 for headings,
 Nunito for body copy. Every icon is a hand-built duotone SVG in the sprite at the
@@ -26,8 +33,9 @@ top of `index.html`; there is no icon font and no emoji anywhere on the page.
 Two rules carried over from the app and worth keeping:
 
 - **The mode cartridges sit on fixed pastel washes**, so text on them uses the
-  cartridge's own `--ink` and never the theme's text colour. A themed colour would
-  come out white-on-mint in dark mode.
+  cartridge's own `--ink` and never the page's text colour — the wash is the
+  mode's identity, not a surface that follows the theme. (Same rule as the app,
+  where a themed colour came out white-on-mint at night.)
 - **Reduced motion is honoured properly** — all animation and the scroll reveal are
   switched off, not shortened.
 
