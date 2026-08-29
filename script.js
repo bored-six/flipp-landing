@@ -24,6 +24,16 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
+  /* Failsafe: whatever happens to the observer — a tab that never paints,
+     an occluded pane, a browser that throttles callbacks — nothing stays
+     invisible for more than a couple of seconds. */
+  setTimeout(function () {
+    document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+      el.style.transitionDelay = '0ms';
+      el.classList.add('in');
+    });
+  }, 2500);
+
   /* Nav gets its hairline only once the page has moved. */
   var nav = document.getElementById('nav');
   var ticking = false;
