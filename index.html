@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flipp — your notes go in, a real exam comes out</title>
+<meta name="description" content="Paste your notes. Flipp writes the questions — seven kinds of them — then hands you a paper to sit. Works entirely offline. No account, no ads, nothing leaves your device." />
+<meta name="theme-color" content="#FAF3E1" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#373D33" media="(prefers-color-scheme: dark)" />
+<link rel="icon" href="img/favicon.png" />
+<link rel="apple-touch-icon" href="img/flipp-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Flipp — your notes go in, a real exam comes out" />
+<meta property="og:description" content="Paste your notes. Flipp writes the questions, then hands you a paper to sit. Entirely offline." />
+<meta property="og:image" content="img/flipp-icon.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Patrick+Hand&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ═══════════ SVG SPRITE — every glyph is hand-built, no icon font, no emoji ═══════════ -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24">
+      <path d="M20 4c0 9-5.6 14-11 14-2.2 0-4-.7-5-1.6C3 13 5.5 8.4 10 6.4 13.5 4.9 17 4.4 20 4Z" fill="var(--f)"/>
+      <path d="M20 4c0 9-5.6 14-11 14-2.2 0-4-.7-5-1.6C3 13 5.5 8.4 10 6.4 13.5 4.9 17 4.4 20 4Z" fill="none" stroke="var(--s)"/>
+      <path d="M16 7.5C12 10 8.6 14 6.6 20" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-sprout" viewBox="0 0 24 24">
+      <path d="M12 21v-7" fill="none" stroke="var(--s)"/>
+      <path d="M12 14c0-3.3-2.5-5.6-6-5.6 0 3.4 2.4 5.6 6 5.6Z" fill="var(--f)"/><path d="M12 14c0-3.3-2.5-5.6-6-5.6 0 3.4 2.4 5.6 6 5.6Z" fill="none" stroke="var(--s)"/>
+      <path d="M12 13c0-3.8 2.7-6.4 6.6-6.4 0 3.9-2.8 6.4-6.6 6.4Z" fill="var(--f)"/><path d="M12 13c0-3.8 2.7-6.4 6.6-6.4 0 3.9-2.8 6.4-6.6 6.4Z" fill="none" stroke="var(--s)"/>
+      <path d="M8.5 21h7" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13.6 2 5 13.4h5.4L9.8 22l8.8-11.6h-5.6L13.6 2Z" fill="var(--f)"/>
+      <path d="M13.6 2 5 13.4h5.4L9.8 22l8.8-11.6h-5.6L13.6 2Z" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M4 4.6c2.8-.9 5.4-.9 8 .6v14c-2.6-1.5-5.2-1.5-8-.6V4.6Z" fill="var(--f)"/>
+      <path d="M20 4.6c-2.8-.9-5.4-.9-8 .6v14c2.6-1.5 5.2-1.5 8-.6V4.6Z" fill="var(--f2)"/>
+      <path d="M4 4.6c2.8-.9 5.4-.9 8 .6 2.6-1.5 5.2-1.5 8-.6v14c-2.8-.9-5.4-.9-8 .6-2.6-1.5-5.2-1.5-8-.6V4.6Z" fill="none" stroke="var(--s)"/>
+      <path d="M12 5.2v14" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M12 20.5S3.5 15.4 3.5 9.6A4.6 4.6 0 0 1 12 7.2a4.6 4.6 0 0 1 8.5 2.4c0 5.8-8.5 10.9-8.5 10.9Z" fill="var(--f)"/>
+      <path d="M12 20.5S3.5 15.4 3.5 9.6A4.6 4.6 0 0 1 12 7.2a4.6 4.6 0 0 1 8.5 2.4c0 5.8-8.5 10.9-8.5 10.9Z" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-mc" viewBox="0 0 24 24">
+      <circle cx="5.5" cy="7" r="2.6" fill="var(--f)"/><circle cx="5.5" cy="7" r="2.6" fill="none" stroke="var(--s)"/>
+      <path d="M4.3 7 5.2 8l2-2.2" fill="none" stroke="var(--s)"/>
+      <circle cx="5.5" cy="16.5" r="2.6" fill="none" stroke="var(--s)"/>
+      <path d="M11 7h9M11 16.5h9" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-tf" viewBox="0 0 24 24">
+      <rect x="2.5" y="6" width="9" height="12" rx="2.4" fill="var(--f)"/><rect x="2.5" y="6" width="9" height="12" rx="2.4" fill="none" stroke="var(--s)"/>
+      <path d="M5 9.4h4.5M7.2 9.4v5.2" fill="none" stroke="var(--s)"/>
+      <rect x="12.5" y="6" width="9" height="12" rx="2.4" fill="none" stroke="var(--s)"/>
+      <path d="M15 15V9.4h4M15 12.2h3.2" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-mtf" viewBox="0 0 24 24">
+      <path d="M3 17.5h8" fill="none" stroke="var(--s)"/>
+      <path d="M3.5 12.5h6.5" fill="none" stroke="var(--s)"/>
+      <path d="M14.4 4.6l4.6 4.6-7.2 7.2-4.6.1.1-4.7 7.1-7.2Z" fill="var(--f)"/>
+      <path d="M14.4 4.6l4.6 4.6-7.2 7.2-4.6.1.1-4.7 7.1-7.2Z" fill="none" stroke="var(--s)"/>
+      <path d="M13.2 6l4.6 4.6" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-ident" viewBox="0 0 24 24">
+      <rect x="2.5" y="5.5" width="19" height="9.5" rx="2.4" fill="var(--f)"/><rect x="2.5" y="5.5" width="19" height="9.5" rx="2.4" fill="none" stroke="var(--s)"/>
+      <path d="M6 10.2h7" fill="none" stroke="var(--s)"/>
+      <path d="M4 19.5h16" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-blank" viewBox="0 0 24 24">
+      <path d="M3 7.5h5M16 7.5h5" fill="none" stroke="var(--s)"/>
+      <rect x="9" y="4.4" width="6" height="6.4" rx="1.6" fill="var(--f)"/><rect x="9" y="4.4" width="6" height="6.4" rx="1.6" fill="none" stroke="var(--s)"/>
+      <path d="M3 15h18M3 19.5h11" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-match" viewBox="0 0 24 24">
+      <rect x="2.5" y="4.5" width="6.5" height="5" rx="1.6" fill="var(--f)"/><rect x="2.5" y="4.5" width="6.5" height="5" rx="1.6" fill="none" stroke="var(--s)"/>
+      <rect x="15" y="4.5" width="6.5" height="5" rx="1.6" fill="none" stroke="var(--s)"/>
+      <rect x="2.5" y="14.5" width="6.5" height="5" rx="1.6" fill="none" stroke="var(--s)"/>
+      <rect x="15" y="14.5" width="6.5" height="5" rx="1.6" fill="var(--f)"/><rect x="15" y="14.5" width="6.5" height="5" rx="1.6" fill="none" stroke="var(--s)"/>
+      <path d="M9 7c3 0 3 10 6 10M9 17c3 0 3-10 6-10" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-enum" viewBox="0 0 24 24">
+      <path d="M3.4 5.6 4.8 4.8V9M3.2 15.2c0-1.3 2.4-1.2 2.4.1 0 1-2.4 2-2.4 3.6h2.6" fill="none" stroke="var(--s)"/>
+      <path d="M9.5 6.6h11M9.5 12h11M9.5 17.4h11" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12.6" r="8.2" fill="var(--f)"/><circle cx="12" cy="12.6" r="8.2" fill="none" stroke="var(--s)"/>
+      <path d="M12 8v4.8l3 1.8M9 2.6h6" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M1.8 12S5.6 5.8 12 5.8 22.2 12 22.2 12 18.4 18.2 12 18.2 1.8 12 1.8 12Z" fill="var(--f)"/>
+      <path d="M1.8 12S5.6 5.8 12 5.8 22.2 12 22.2 12 18.4 18.2 12 18.2 1.8 12 1.8 12Z" fill="none" stroke="var(--s)"/>
+      <circle cx="12" cy="12" r="2.9" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24">
+      <path d="M4 9.5A6.4 6.4 0 0 1 10.2 4.5h9" fill="none" stroke="var(--s)"/><path d="M16.6 1.8 19.8 4.5l-3.2 2.8" fill="none" stroke="var(--s)"/>
+      <path d="M20 14.5a6.4 6.4 0 0 1-6.2 5h-9" fill="none" stroke="var(--s)"/><path d="M7.4 22.2 4.2 19.5l3.2-2.8" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-offline" viewBox="0 0 24 24">
+      <path d="M12 19.4l2.6-2.8a3.7 3.7 0 0 0-5.2 0L12 19.4Z" fill="var(--f)"/><path d="M12 19.4l2.6-2.8a3.7 3.7 0 0 0-5.2 0L12 19.4Z" fill="none" stroke="var(--s)"/>
+      <path d="M6.3 12.6a8.6 8.6 0 0 1 11.4 0M2.6 8.6a14 14 0 0 1 18.8 0" fill="none" stroke="var(--s)"/>
+      <path d="M3 3l18 18" fill="none" stroke="var(--alert)"/>
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect x="4" y="10.4" width="16" height="10.4" rx="2.8" fill="var(--f)"/><rect x="4" y="10.4" width="16" height="10.4" rx="2.8" fill="none" stroke="var(--s)"/>
+      <path d="M7.8 10.4V8a4.2 4.2 0 0 1 8.4 0v2.4" fill="none" stroke="var(--s)"/>
+      <circle cx="12" cy="15.4" r="1.5" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="5.2" width="18" height="16" rx="2.8" fill="var(--f)"/><rect x="3" y="5.2" width="18" height="16" rx="2.8" fill="none" stroke="var(--s)"/>
+      <path d="M3 10.2h18M8 2.8v4.4M16 2.8v4.4" fill="none" stroke="var(--s)"/>
+      <path d="M7.6 15.4l1.8 1.9 3.4-3.7" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24">
+      <path d="M3.4 20.4h17.2" fill="none" stroke="var(--s)"/>
+      <rect x="5" y="12" width="3.8" height="7" rx="1.2" fill="var(--f)"/><rect x="5" y="12" width="3.8" height="7" rx="1.2" fill="none" stroke="var(--s)"/>
+      <rect x="10.2" y="8" width="3.8" height="11" rx="1.2" fill="none" stroke="var(--s)"/>
+      <rect x="15.4" y="4.2" width="3.8" height="14.8" rx="1.2" fill="var(--f)"/><rect x="15.4" y="4.2" width="3.8" height="14.8" rx="1.2" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-sticker" viewBox="0 0 24 24">
+      <path d="M12 2.4l2.6 1.9 3.2-.4 1 3.1 2.6 1.9-1.4 2.9 1.4 2.9-2.6 1.9-1 3.1-3.2-.4L12 21.2l-2.6-1.9-3.2.4-1-3.1L2.6 14.7l1.4-2.9-1.4-2.9 2.6-1.9 1-3.1 3.2.4L12 2.4Z" fill="var(--f)"/>
+      <path d="M12 2.4l2.6 1.9 3.2-.4 1 3.1 2.6 1.9-1.4 2.9 1.4 2.9-2.6 1.9-1 3.1-3.2-.4L12 21.2l-2.6-1.9-3.2.4-1-3.1L2.6 14.7l1.4-2.9-1.4-2.9 2.6-1.9 1-3.1 3.2.4L12 2.4Z" fill="none" stroke="var(--s)"/>
+      <path d="M8.8 12.2l2.2 2.3 4.2-4.6" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24">
+      <path d="M15.4 3.4l5.2 5.2L9.2 20H4v-5.2L15.4 3.4Z" fill="var(--f)"/>
+      <path d="M15.4 3.4l5.2 5.2L9.2 20H4v-5.2L15.4 3.4Z" fill="none" stroke="var(--s)"/>
+      <path d="M13.8 5l5.2 5.2M4 14.8L9.2 20" fill="none" stroke="var(--s)"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13.4 6l6 6-6 6" fill="none" stroke="var(--s)"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24">
+      <path d="M12 2.2A9.9 9.9 0 0 0 8.9 21.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A9.9 9.9 0 0 0 12 2.2Z" fill="var(--f)"/>
+      <path d="M12 2.2A9.9 9.9 0 0 0 8.9 21.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A9.9 9.9 0 0 0 12 2.2Z" fill="none" stroke="var(--s)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ═══════════ NAV ═══════════ -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top">
+    <img src="img/flipp-icon.png" alt="" width="40" height="40" />
+    <span class="brand-name">Flipp</span>
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#how">How it works</a>
+    <a href="#formats">Question types</a>
+    <a href="#modes">Modes</a>
+    <a href="#honest">Progress</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-sm" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">Open Flipp</a>
+</header>
+
+<main id="main">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero paper" id="top">
+  <span class="margin-line" aria-hidden="true"></span>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="kicker reveal">Flip it till you know it</p>
+      <h1 class="reveal">Your notes go in.<br /><span class="hand">A real exam</span> comes out.</h1>
+      <p class="lede reveal">Paste the notes you already wrote. Flipp turns them into seven kinds of question,
+        hands you a paper to sit, and marks it the moment you finish.</p>
+      <div class="cta-row reveal">
+        <a class="btn btn-lg" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">
+          Open Flipp in your browser <svg class="ic"><use href="#i-arrow"/></svg>
+        </a>
+        <span class="btn-note">Android build in progress · no install needed to try it</span>
+      </div>
+      <ul class="hero-facts reveal">
+        <li><svg class="ic"><use href="#i-offline"/></svg> Works with no signal</li>
+        <li><svg class="ic"><use href="#i-lock"/></svg> No account, no tracking</li>
+        <li><svg class="ic"><use href="#i-pencil"/></svg> No cards to write by hand</li>
+      </ul>
+    </div>
+
+    <div class="hero-art reveal">
+      <span class="tape tape-a" aria-hidden="true"></span>
+      <div class="phone float">
+        <div class="screen paper-sm">
+          <span class="screen-margin" aria-hidden="true"></span>
+          <span class="holes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="screen-in">
+            <p class="s-kicker">FLIPP</p>
+            <h2 class="s-title">My binder</h2>
+            <span class="chip chip-mint">SUBJECTS · 3</span>
+            <div class="row-card tilt-1">
+              <span class="ribbon">NEXT UP</span>
+              <p class="row-name">Biology</p>
+              <div class="bar"><span style="width:72%"></span></div>
+              <p class="row-meta">72% · 48 questions</p>
+            </div>
+            <div class="row-card tilt-2">
+              <p class="row-name">Chemistry</p>
+              <div class="bar"><span style="width:41%"></span></div>
+              <p class="row-meta">41% · 32 questions</p>
+            </div>
+            <div class="row-card tilt-3">
+              <p class="row-name">History</p>
+              <div class="bar"><span style="width:88%"></span></div>
+              <p class="row-meta">88% · 27 questions</p>
+            </div>
+          </div>
+          <div class="tabbar">
+            <span class="tab on">DECKS</span><span class="tab">PLANNER</span><span class="tab">PROGRESS</span>
+          </div>
+        </div>
+      </div>
+      <div class="sticky sticky-a">
+        <p>10 lines</p><p>10 we can use</p><p>5 definitions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ THE POINT ═══════════ -->
+<section class="band" id="point">
+  <div class="wrap narrow">
+    <h2 class="reveal">Most study apps make you write the flashcards first.</h2>
+    <p class="big reveal">That is the homework before the homework — and it is where almost everyone quits.
+      Flipp reads the notes you already took and does that part for you.</p>
+    <div class="note-demo reveal">
+      <div class="note-in">
+        <p class="note-label">WHAT YOU PASTE</p>
+        <p class="note-line">Chlorophyll: the green pigment that absorbs light in the chloroplast</p>
+        <p class="note-line">Mitochondria produce 36 ATP per glucose molecule.</p>
+        <p class="note-line">The three states of matter are solid, liquid and gas.</p>
+      </div>
+      <div class="note-arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></div>
+      <div class="note-out">
+        <p class="note-label">WHAT YOU GET BACK</p>
+        <p class="q-line"><b>Identification.</b> The green pigment that absorbs light in the chloroplast is ___</p>
+        <p class="q-line"><b>Fill in the blank.</b> Mitochondria produce ___ ATP per glucose molecule.</p>
+        <p class="q-line"><b>Enumeration.</b> Name the three states of matter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section class="band paper" id="how">
+  <span class="margin-line" aria-hidden="true"></span>
+  <div class="wrap">
+    <p class="eyebrow reveal">HOW IT WORKS</p>
+    <h2 class="reveal">Three steps, and none of them is <span class="strike">making cards</span>.</h2>
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-n">1</span>
+        <h3>Paste your notes</h3>
+        <p>Type or paste them in. Flipp reads the <em>shape</em> as you go and tells you what it can use —
+          how many lines, how many are definitions, how many it will turn into questions. Nothing is a surprise.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-n">2</span>
+        <h3>Build the paper</h3>
+        <p>Tick the question types you want and say exactly how many of each. Ten multiple choice and
+          five matching, or forty identification — it is your paper, not a preset.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-n">3</span>
+        <h3>Sit it</h3>
+        <p>Pick a mode, sit the paper, and get it back marked — with a short note on what actually cost you
+          marks and one thing to do next. Not a wall of statistics.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ FORMATS ═══════════ -->
+<section class="band" id="formats">
+  <div class="wrap">
+    <p class="eyebrow reveal">SEVEN QUESTION TYPES</p>
+    <h2 class="reveal">Built from the same notes, asked seven ways.</h2>
+    <p class="sub reveal">Recognising an answer in a list is easier than producing it from nothing.
+      Flipp can ask the same fact both ways, so you find out which one you can actually do.</p>
+    <div class="grid formats">
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-mc"/></svg><h3>Multiple choice</h3><p>Four options, wrong ones borrowed from your own notes — never filler.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-tf"/></svg><h3>True or False</h3><p>A claim rebuilt from your line. Sometimes it is quietly wrong.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-mtf"/></svg><h3>Modified True or False</h3><p>If it is false, say which word makes it false and fix it.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-ident"/></svg><h3>Identification</h3><p>The meaning is given. You produce the term, spelled out.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-blank"/></svg><h3>Fill in the blank</h3><p>Your own sentence with the load-bearing word taken out.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-match"/></svg><h3>Matching</h3><p>Two columns to pair up — only built when your notes can fill the grid.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-enum"/></svg><h3>Enumeration</h3><p>List all three states of matter. No credit for two of them.</p></article>
+      <article class="card card-soft reveal"><svg class="ic ic-lg"><use href="#i-pencil"/></svg><h3>Or write your own</h3><p>Type a question and its answer; Flipp borrows plausible wrong options from the subject.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MODES ═══════════ -->
+<section class="band paper" id="modes">
+  <span class="margin-line" aria-hidden="true"></span>
+  <div class="wrap">
+    <p class="eyebrow reveal">FIVE WAYS TO SIT IT</p>
+    <h2 class="reveal">Pick a mode, not a settings form.</h2>
+    <p class="sub reveal">Every mode sets three dials at once — the clock, when you see the answer, and whether a
+      question can come back. They are deliberately not separate toggles: presets read like a game, toggles read like admin.</p>
+
+    <div class="dials reveal">
+      <span><svg class="ic"><use href="#i-clock"/></svg> Clock</span>
+      <span><svg class="ic"><use href="#i-eye"/></svg> Feedback</span>
+      <span><svg class="ic"><use href="#i-repeat"/></svg> Repetition</span>
+    </div>
+
+    <div class="grid modes">
+      <article class="cart reveal" style="--wash:#DDF3DC;--ink:#2C8A4A">
+        <span class="stamp">NO CLOCK</span>
+        <svg class="ic ic-lg"><use href="#i-leaf"/></svg>
+        <h3>Take your time</h3>
+        <p>No clock. Answer, see how you did, move on.</p>
+        <p class="verb">Start &rsaquo;</p>
+      </article>
+      <article class="cart reveal" style="--wash:#CFEBBD;--ink:#4E7B2C">
+        <span class="stamp">UNTIL IT STICKS</span>
+        <svg class="ic ic-lg"><use href="#i-sprout"/></svg>
+        <h3>Mastery</h3>
+        <p>Miss one and it comes back. Get it right twice and it&rsquo;s gone.</p>
+        <p class="verb">Build the pile &rsaquo;</p>
+      </article>
+      <article class="cart reveal" style="--wash:#FCEBC0;--ink:#A0731A">
+        <span class="stamp">ON THE CLOCK</span>
+        <svg class="ic ic-lg"><use href="#i-bolt"/></svg>
+        <h3>Beat the clock</h3>
+        <p>Seconds per question. Run out and it counts as missed.</p>
+        <p class="verb">Light the fuse &rsaquo;</p>
+      </article>
+      <article class="cart reveal" style="--wash:#DBEEFB;--ink:#2E6FA3">
+        <span class="stamp">SEALED</span>
+        <svg class="ic ic-lg"><use href="#i-book"/></svg>
+        <h3>Exam simulation</h3>
+        <p>One timer for the whole paper. No answers until you submit.</p>
+        <p class="verb">Sit the paper &rsaquo;</p>
+      </article>
+      <article class="cart reveal" style="--wash:#F7CFD3;--ink:#A94050">
+        <span class="stamp">THREE LIVES</span>
+        <svg class="ic ic-lg"><use href="#i-heart"/></svg>
+        <h3>Survival</h3>
+        <p>Questions keep coming. Three misses and it&rsquo;s over.</p>
+        <p class="verb">Take the first hit &rsaquo;</p>
+      </article>
+      <article class="cart cart-blank reveal">
+        <p class="blank-q">Exam simulation hides every verdict until you hand the paper in — including on the
+          questions it would otherwise have marked instantly.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HONEST PROGRESS ═══════════ -->
+<section class="band" id="honest">
+  <div class="wrap">
+    <p class="eyebrow reveal">PROGRESS, HONESTLY</p>
+    <h2 class="reveal">A percentage that is allowed to go down.</h2>
+    <div class="split">
+      <div class="reveal">
+        <p class="big">Mastery is not a high score. It is an average over <em>every</em> question in the
+          subject — including the ones you have never been asked.</p>
+        <ul class="ticks">
+          <li>Add new notes and your percentage drops, because you genuinely know less of the subject than you did.</li>
+          <li>Leave a subject alone and it fades, slowly, until the app admits it does not know either.</li>
+          <li>Get something right after missing it and it moves — a lot at first, less each time.</li>
+        </ul>
+        <p class="aside">There is no XP, there are no ranks and there is no leaderboard. Those reward grinding
+          the easy deck. Mastery is the honest version of the same feeling.</p>
+      </div>
+      <div class="reveal">
+        <div class="stat-card">
+          <div class="mast-row"><span>Biology</span><b>72%</b></div>
+          <div class="bar big-bar"><span style="width:72%"></span></div>
+          <div class="mast-row dim"><span>after adding 20 new notes</span><b>58%</b></div>
+          <div class="bar big-bar"><span class="drop" style="width:58%"></span></div>
+          <p class="stat-note">Same brain, more subject.</p>
+        </div>
+        <div class="fire-card">
+          <svg viewBox="0 0 60 76" class="flame" aria-hidden="true">
+            <path class="flame-body" d="M30 8c8 12 16 16 16 28a16 16 0 0 1-32 0C14 26 22 20 30 8Z"/>
+            <path class="flame-core" d="M30 30c4 6 7 8 7 14a7 7 0 0 1-14 0c0-6 3-8 7-14Z"/>
+          </svg>
+          <div>
+            <p class="fire-n">A streak that changes shape</p>
+            <p class="fire-p">Ten tiers, from a cold coal to a fire with rays and embers. Each one is a different
+              drawing, not the same flame in a new colour — so you can tell them apart at a glance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MORE ═══════════ -->
+<section class="band paper" id="more">
+  <span class="margin-line" aria-hidden="true"></span>
+  <div class="wrap">
+    <p class="eyebrow reveal">THE REST OF IT</p>
+    <h2 class="reveal">Small things, done deliberately.</h2>
+    <div class="grid feats">
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-calendar"/></svg><h3>A planner you control</h3>
+        <p>You set when you want to study and Flipp reminds you then. It does not decide on its own that
+          today is a good day to nag you.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-offline"/></svg><h3>Genuinely offline</h3>
+        <p>Everything lives in a database on your device. Airplane mode changes nothing, because there was
+          never a request to fail.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-lock"/></svg><h3>Nothing leaves the phone</h3>
+        <p>No account to make, no server to send notes to, no analytics, no ads. Your notes are yours and
+          they stay where you put them.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-sticker"/></svg><h3>Thirty hidden stickers</h3>
+        <p>Achievements you find rather than tick off a list. They stay hidden until they are earned —
+          no checklist to farm.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-chart"/></svg><h3>A wall chart, not a dashboard</h3>
+        <p>Twelve weeks of days, one square each, with a pin on any day you earned something. You can see a
+          term of work in one glance.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-mtf"/></svg><h3>A marker&rsquo;s note</h3>
+        <p>After a paper: what you lost marks to, what is nearly there, what is weak. Three lines, then one
+          thing to do next.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="band cta-band">
+  <div class="wrap narrow center">
+    <span class="tape tape-b" aria-hidden="true"></span>
+    <img class="cta-logo reveal" src="img/flipp-icon.png" alt="" width="88" height="88" />
+    <h2 class="reveal">Bring your own notes.</h2>
+    <p class="big reveal">It runs in the browser, so there is nothing to install before you find out whether
+      you like it.</p>
+    <a class="btn btn-lg reveal" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">
+      Open Flipp <svg class="ic"><use href="#i-arrow"/></svg>
+    </a>
+    <p class="btn-note reveal">Free · no account · Android build in progress</p>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="band" id="faq">
+  <div class="wrap narrow">
+    <p class="eyebrow reveal">QUESTIONS</p>
+    <h2 class="reveal">Reasonable things to ask.</h2>
+    <div class="faq">
+      <details class="reveal"><summary>Do I need an account?</summary>
+        <p>No. There is no sign-up, no email and no login screen. Open it and start.</p></details>
+      <details class="reveal"><summary>Where do my notes actually go?</summary>
+        <p>Into a database on your own device, and nowhere else. Flipp has no server of its own, no analytics
+          and no ad code — there is no path for your notes to leave.</p></details>
+      <details class="reveal"><summary>Does it really work offline?</summary>
+        <p>Yes. Question generation, exams, marking and progress all run locally. The one thing a connection
+          buys you is the first page load in the browser version.</p></details>
+      <details class="reveal"><summary>What kind of notes work best?</summary>
+        <p>Ordinary revision notes. Lines shaped <em>Term: meaning</em> give the richest questions; plain
+          factual sentences and short lists work well too. Flipp tells you what it can use before you commit.</p></details>
+      <details class="reveal"><summary>Is it on the App Store or Play Store?</summary>
+        <p>Not yet. Today it runs in the browser and an Android build is in progress. iOS is not a target
+          at the moment — this is an honest roadmap, not a coming-soon banner.</p></details>
+      <details class="reveal"><summary>What does it cost?</summary>
+        <p>Nothing. No subscription, no in-app purchases, no ads — there is no payment code in the app at all.</p></details>
+      <details class="reveal"><summary>Can I write my own questions too?</summary>
+        <p>Yes. Give a question and its correct answer, and Flipp borrows three plausible wrong options from
+          the rest of that subject. If the subject is too thin to offer three, it asks you rather than padding
+          with filler.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <img src="img/flipp-icon.png" alt="" width="34" height="34" />
+      <div>
+        <p class="brand-name">Flipp</p>
+        <p class="foot-tag">Flip it till you know it.</p>
+      </div>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">Open the app</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+  <p class="foot-fine">Built with React Native and Expo. Runs offline by design.</p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
