@@ -59,5 +59,23 @@ Pushing to `main` ships it.
 The page makes no claim that cannot be checked in the app's source: there is no
 account system, no analytics, no ad SDK and no payment code in Flipp, which is why
 the page says so plainly. There are no store badges, invented review counts or
-testimonials, and the roadmap line (browser today, Android in progress, iOS not a
+testimonials, and the roadmap line (Android APK and browser today, iOS not a
 current target) reflects the actual state of the project.
+
+## The Android download
+
+The **Download for Android** buttons point at the EAS build page:
+
+```
+https://expo.dev/accounts/bored-six/projects/studypack/builds/f602e3a4-d2a9-44d1-b4fd-3c03e1e9c17c
+```
+
+That page — not a direct `.apk` URL — on purpose. It is what Expo's own install
+modal tells you to share ("Send and open the URL below to install it on a
+device"), it renders for logged-out visitors, it shows a QR code on desktop and
+installs directly on a phone, and it will not rot the way a raw artifact link can.
+The build is an internal-distribution **APK**, status Finished.
+
+To point at a newer build, replace that URL in `index.html` — it appears in the
+nav, the hero, the closing CTA and the footer. Keep the note about Android asking
+you to confirm the install; it is the first thing a sideloading visitor hits.

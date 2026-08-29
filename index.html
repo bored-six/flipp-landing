@@ -136,6 +136,12 @@
       <path d="M15.4 3.4l5.2 5.2L9.2 20H4v-5.2L15.4 3.4Z" fill="none" stroke="var(--s)"/>
       <path d="M13.8 5l5.2 5.2M4 14.8L9.2 20" fill="none" stroke="var(--s)"/>
     </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M4 14.2v4a2.2 2.2 0 0 0 2.2 2.2h11.6a2.2 2.2 0 0 0 2.2-2.2v-4Z" fill="var(--f)"/>
+      <path d="M4 14.2v4a2.2 2.2 0 0 0 2.2 2.2h11.6a2.2 2.2 0 0 0 2.2-2.2v-4" fill="none" stroke="var(--s)"/>
+      <path d="M12 3v11.4" fill="none" stroke="var(--s)"/>
+      <path d="M7.5 10.2 12 14.7l4.5-4.5" fill="none" stroke="var(--s)"/>
+    </symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13.4 6l6 6-6 6" fill="none" stroke="var(--s)"/></symbol>
     <symbol id="i-github" viewBox="0 0 24 24">
       <path d="M12 2.2A9.9 9.9 0 0 0 8.9 21.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A9.9 9.9 0 0 0 12 2.2Z" fill="var(--f)"/>
@@ -159,7 +165,7 @@
     <a href="#honest">Progress</a>
     <a href="#faq">FAQ</a>
   </nav>
-  <a class="btn btn-sm" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">Open Flipp</a>
+  <a class="btn btn-sm" href="https://expo.dev/accounts/bored-six/projects/studypack/builds/f602e3a4-d2a9-44d1-b4fd-3c03e1e9c17c" target="_blank" rel="noopener"><svg class="ic"><use href="#i-download"/></svg> Download</a>
 </header>
 
 <main id="main">
@@ -174,10 +180,14 @@
       <p class="lede reveal">Paste the notes you already wrote. Flipp turns them into seven kinds of question,
         hands you a paper to sit, and marks it the moment you finish.</p>
       <div class="cta-row reveal">
-        <a class="btn btn-lg" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">
-          Open Flipp in your browser <svg class="ic"><use href="#i-arrow"/></svg>
+        <a class="btn btn-lg" href="https://expo.dev/accounts/bored-six/projects/studypack/builds/f602e3a4-d2a9-44d1-b4fd-3c03e1e9c17c" target="_blank" rel="noopener">
+          <svg class="ic"><use href="#i-download"/></svg> Download for Android
         </a>
-        <span class="btn-note">Android build in progress · no install needed to try it</span>
+        <a class="btn btn-lg btn-ghost" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">
+          Or try it in your browser <svg class="ic"><use href="#i-arrow"/></svg>
+        </a>
+        <span class="btn-note">A free APK you install directly — no Play Store account. Android asks you to
+          confirm the first install. On a computer the link shows a QR code to point your phone at.</span>
       </div>
       <ul class="hero-facts reveal">
         <li><svg class="ic"><use href="#i-offline"/></svg> Works with no signal</li>
@@ -433,12 +443,17 @@
     <span class="tape tape-b" aria-hidden="true"></span>
     <img class="cta-logo reveal" src="img/flipp-icon.png" alt="" width="88" height="88" />
     <h2 class="reveal">Bring your own notes.</h2>
-    <p class="big reveal">It runs in the browser, so there is nothing to install before you find out whether
-      you like it.</p>
-    <a class="btn btn-lg reveal" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">
-      Open Flipp <svg class="ic"><use href="#i-arrow"/></svg>
-    </a>
-    <p class="btn-note reveal">Free · no account · Android build in progress</p>
+    <p class="big reveal">Put it on your phone, or try it in the browser first. Either way there is
+      nothing to sign up for and nothing to pay.</p>
+    <div class="cta-row cta-row-center reveal">
+      <a class="btn btn-lg" href="https://expo.dev/accounts/bored-six/projects/studypack/builds/f602e3a4-d2a9-44d1-b4fd-3c03e1e9c17c" target="_blank" rel="noopener">
+        <svg class="ic"><use href="#i-download"/></svg> Download for Android
+      </a>
+      <a class="btn btn-lg btn-ghost" href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">
+        Open in browser <svg class="ic"><use href="#i-arrow"/></svg>
+      </a>
+    </div>
+    <p class="btn-note reveal">Free · no account · no ads</p>
   </div>
 </section>
 
@@ -460,8 +475,13 @@
         <p>Ordinary revision notes. Lines shaped <em>Term: meaning</em> give the richest questions; plain
           factual sentences and short lists work well too. Flipp tells you what it can use before you commit.</p></details>
       <details class="reveal"><summary>Is it on the App Store or Play Store?</summary>
-        <p>Not yet. Today it runs in the browser and an Android build is in progress. iOS is not a target
-          at the moment — this is an honest roadmap, not a coming-soon banner.</p></details>
+        <p>No. The Android app is a signed APK you download straight from the build page and install
+          yourself, so there is no store account in the way. iOS is not a target at the moment — this is
+          an honest roadmap, not a coming-soon banner.</p></details>
+      <details class="reveal"><summary>Android says it won&rsquo;t install apps from this source.</summary>
+        <p>That prompt appears for anything not installed through the Play Store. Tap <em>Settings</em> on
+          the warning and allow your browser to install apps once; Android then continues the install
+          normally. You can turn the permission straight back off afterwards.</p></details>
       <details class="reveal"><summary>What does it cost?</summary>
         <p>Nothing. No subscription, no in-app purchases, no ads — there is no payment code in the app at all.</p></details>
       <details class="reveal"><summary>Can I write my own questions too?</summary>
@@ -484,7 +504,8 @@
       </div>
     </div>
     <nav class="foot-links" aria-label="Footer">
-      <a href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">Open the app</a>
+      <a href="https://expo.dev/accounts/bored-six/projects/studypack/builds/f602e3a4-d2a9-44d1-b4fd-3c03e1e9c17c" target="_blank" rel="noopener">Download for Android</a>
+      <a href="https://flipp-theta-gilt.vercel.app" target="_blank" rel="noopener">Open in browser</a>
       <a href="#how">How it works</a>
       <a href="#faq">FAQ</a>
     </nav>
