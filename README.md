@@ -64,18 +64,32 @@ current target) reflects the actual state of the project.
 
 ## The Android download
 
-The **Download for Android** buttons point at the EAS build page:
+The **Download for Android** buttons serve the APK itself:
 
 ```
-https://expo.dev/accounts/bored-six/projects/studypack/builds/f602e3a4-d2a9-44d1-b4fd-3c03e1e9c17c
+https://github.com/bored-six/flipp-landing/releases/download/v1.0.0/flipp-1.0.0.apk
 ```
 
-That page — not a direct `.apk` URL — on purpose. It is what Expo's own install
-modal tells you to share ("Send and open the URL below to install it on a
-device"), it renders for logged-out visitors, it shows a QR code on desktop and
-installs directly on a phone, and it will not rot the way a raw artifact link can.
-The build is an internal-distribution **APK**, status Finished.
+**The APK is a GitHub Release asset and is deliberately not in this repo.** It is
+95.7 MB — GitHub hard-blocks files over 100 MB, warns over 50 MB, and anything
+committed stays in history forever, so every future build would add another
+~95 MB to every clone. Release assets have a 2 GB limit, are CDN-backed, cost no
+Vercel bandwidth, and GitHub already serves them with
+`Content-Type: application/vnd.android.package-archive` and
+`Content-Disposition: attachment`, so the browser downloads rather than displays.
+`.gitignore` blocks `*.apk` and `*.aab` to keep it that way.
 
-To point at a newer build, replace that URL in `index.html` — it appears in the
-nav, the hero, the closing CTA and the footer. Keep the note about Android asking
-you to confirm the install; it is the first thing a sideloading visitor hits.
+A second link points at the EAS build page, which shows a QR code — that is the
+only sensible route for someone on a laptop, since a 95 MB APK on a computer is
+no use without a way to move it across.
+
+### Publishing a new build
+
+```bash
+gh release create vX.Y.Z path/to/flipp-X.Y.Z.apk --repo bored-six/flipp-landing
+```
+
+Then update the download URL in `index.html` (nav, hero, closing CTA, footer) and
+the version and size in the hero note. Keep the note about Android asking you to
+confirm the install — it is the first thing a sideloading visitor hits, and
+without it the prompt reads as the app being broken.

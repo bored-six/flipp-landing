@@ -2,3 +2,7 @@
 .vercel
 node_modules/
 *.log
+
+# app binaries ship as GitHub Release assets, never in git history
+*.apk
+*.aab
