@@ -39,6 +39,28 @@ Two rules carried over from the app and worth keeping:
 - **Reduced motion is honoured properly** — all animation and the scroll reveal are
   switched off, not shortened.
 
+## Interactive parts
+
+Three, all vanilla JS in `script.js`, all degrading to readable static content
+when JS is off (`html.js` guards the reveal; see below):
+
+- **The try-it panel** (`#try`) — a cut-down copy of the app's `noteParser`
+  rules: `Term: meaning` becomes multiple choice when the subject offers enough
+  other terms to borrow wrong answers from and identification when it does not,
+  "X are A, B and C" becomes enumeration, a sentence with a number becomes
+  fill-in-the-blank, and anything else factual becomes true or false. It runs
+  entirely in the page — the panel says "nothing is sent anywhere" and that is
+  literally true, which is the point.
+- **The screenshot gallery** (`#screens`) — the real screens from
+  `img/shots/`, preloaded on init so switching never flashes an empty phone.
+- **The mastery slider** — drag to add notes to a subject and watch the
+  percentage fall while the number you can answer stays at 36. That is the
+  section's whole argument, made draggable instead of asserted.
+
+The screenshots are genuine captures of the app running, resized to 780px wide.
+The section says so explicitly, so they must never be replaced with mockups
+without changing that line.
+
 ## Run it
 
 Any static server will do:

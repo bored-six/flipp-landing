@@ -13,7 +13,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Flipp — your notes go in, a real exam comes out" />
 <meta property="og:description" content="Paste your notes. Flipp writes the questions, then hands you a paper to sit. Studying runs offline on your device." />
-<meta property="og:image" content="img/flipp-icon.png" />
+<meta property="og:image" content="img/shots/00-linkedin-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -167,6 +167,7 @@
   <nav class="nav-links" aria-label="Sections">
     <a href="#how">How it works</a>
     <a href="#formats">Question types</a>
+    <a href="#screens">Screens</a>
     <a href="#nib">Nib</a>
     <a href="#modes">Modes</a>
     <a href="#honest">Progress</a>
@@ -249,20 +250,31 @@
     <h2 class="reveal">Most study apps make you write the flashcards first.</h2>
     <p class="big reveal">That is the homework before the homework — and it is where almost everyone quits.
       Flipp reads the notes you already took and does that part for you.</p>
-    <div class="note-demo reveal">
-      <div class="note-in">
-        <p class="note-label">WHAT YOU PASTE</p>
-        <p class="note-line">Chlorophyll: the green pigment that absorbs light in the chloroplast</p>
-        <p class="note-line">Mitochondria produce 36 ATP per glucose molecule.</p>
-        <p class="note-line">The three states of matter are solid, liquid and gas.</p>
+    <div class="try reveal" id="try">
+      <div class="try-head">
+        <p class="try-label">TRY IT — nothing is sent anywhere</p>
+        <div class="try-chips" id="tryChips" aria-live="polite"></div>
       </div>
-      <div class="note-arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></div>
-      <div class="note-out">
-        <p class="note-label">WHAT YOU GET BACK</p>
-        <p class="q-line"><b>Identification.</b> The green pigment that absorbs light in the chloroplast is ___</p>
-        <p class="q-line"><b>Fill in the blank.</b> Mitochondria produce ___ ATP per glucose molecule.</p>
-        <p class="q-line"><b>Enumeration.</b> Name the three states of matter.</p>
+      <div class="try-body">
+        <div class="try-side">
+          <label class="try-legend" for="tryInput">Your notes</label>
+          <textarea id="tryInput" class="try-input" spellcheck="false"
+            aria-describedby="tryChips"></textarea>
+          <div class="try-actions">
+            <button type="button" class="pill" data-sample="bio">Biology</button>
+            <button type="button" class="pill" data-sample="hist">History</button>
+            <button type="button" class="pill" data-sample="chem">Chemistry</button>
+            <button type="button" class="pill pill-clear" data-sample="clear">Clear</button>
+          </div>
+        </div>
+        <div class="try-side">
+          <p class="try-legend">What Flipp makes of them <span class="try-count" id="tryCount"></span></p>
+          <div class="try-out" id="tryOut" aria-live="polite"></div>
+        </div>
       </div>
+      <p class="try-fine">This is a cut-down copy of the rules that run on your device — enough to show the
+        idea. The app knows more patterns, writes all seven formats, and borrows its wrong answers from
+        across the whole subject.</p>
     </div>
   </div>
 </section>
@@ -312,6 +324,53 @@
       <article class="card reveal"><svg class="ic ic-lg"><use href="#i-match"/></svg><h3>Matching</h3><p>Two columns to pair up — only built when your notes can fill the grid.</p></article>
       <article class="card reveal"><svg class="ic ic-lg"><use href="#i-enum"/></svg><h3>Enumeration</h3><p>List all three states of matter. No credit for two of them.</p></article>
       <article class="card card-soft reveal"><svg class="ic ic-lg"><use href="#i-pencil"/></svg><h3>Or write your own</h3><p>Type a question and its answer; Flipp borrows plausible wrong options from the subject.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SCREENS ═══════════ -->
+<section class="band paper" id="screens">
+  <span class="margin-line" aria-hidden="true"></span>
+  <div class="wrap">
+    <p class="eyebrow reveal">THE REAL THING</p>
+    <h2 class="reveal">Every screen, as it actually looks.</h2>
+    <p class="sub reveal">Not renders. These are screenshots of the app running.</p>
+
+    <div class="shots reveal" role="group" aria-label="App screenshots">
+      <div class="shot-stage">
+        <img id="shotImg" src="img/shots/01-home.png" width="390" height="844"
+             alt="Flipp home screen: a binder of subjects with mastery bars" />
+      </div>
+      <div class="shot-side">
+        <p class="shot-cap" id="shotCap">Your binder. Every subject with the share of it you can
+          actually answer right now.</p>
+        <ol class="shot-list" id="shotList">
+          <li><button type="button" class="on" data-src="01-home"
+              data-cap="Your binder. Every subject with the share of it you can actually answer right now."
+              data-alt="Flipp home screen: a binder of subjects with mastery bars">Your binder</button></li>
+          <li><button type="button" data-src="02-add-notes"
+              data-cap="Paste your notes. It reads their shape as you type and tells you what it can use."
+              data-alt="Add notes screen with a paste box and note-shape chips">Add notes</button></li>
+          <li><button type="button" data-src="03-questions-from-notes"
+              data-cap="The questions it made, each one keeping the line it came from. Drop any you disagree with."
+              data-alt="Review screen listing generated questions">Review what it made</button></li>
+          <li><button type="button" data-src="04-pick-your-game"
+              data-cap="Five modes. Each sets the clock, the feedback and whether a question can come back."
+              data-alt="Mode picker showing five exam mode cartridges">Pick your game</button></li>
+          <li><button type="button" data-src="05-build-your-pages"
+              data-cap="Tick the formats you want and say exactly how many of each. It is your paper."
+              data-alt="Exam builder with per-format question counts">Build the paper</button></li>
+          <li><button type="button" data-src="06-question"
+              data-cap="Sitting it. One question, on the stationery that mode uses."
+              data-alt="A question being answered during an exam">Sit it</button></li>
+          <li><button type="button" data-src="07-report-card"
+              data-cap="Marked, with a note on what actually cost you and one thing to do next."
+              data-alt="Report card showing score and what to revisit">Report card</button></li>
+          <li><button type="button" data-src="08-achievement"
+              data-cap="Thirty stickers, hidden until you earn them. No checklist to grind."
+              data-alt="An achievement sticker being revealed">Stickers</button></li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
@@ -433,11 +492,15 @@
       </div>
       <div class="reveal">
         <div class="stat-card">
-          <div class="mast-row"><span>Biology</span><b>72%</b></div>
-          <div class="bar big-bar"><span style="width:72%"></span></div>
-          <div class="mast-row dim"><span>after adding 20 new notes</span><b>58%</b></div>
-          <div class="bar big-bar"><span class="drop" style="width:58%"></span></div>
-          <p class="stat-note">Same brain, more subject.</p>
+          <div class="mast-row"><span>Biology</span><b id="mastPct">72%</b></div>
+          <div class="bar big-bar"><span id="mastBar" style="width:72%"></span></div>
+          <p class="mast-known" id="mastKnown">36 of 50 questions you can answer</p>
+          <label class="mast-label" for="mastSlider">
+            Add new notes to the subject <b id="mastAdd">0</b>
+          </label>
+          <input type="range" id="mastSlider" class="mast-slider" min="0" max="50" value="0" step="1" />
+          <p class="stat-note" id="mastNote">Drag it. The percentage falls because the subject grew,
+            not because you forgot anything.</p>
         </div>
         <div class="fire-card">
           <svg viewBox="0 0 60 76" class="flame" aria-hidden="true">
