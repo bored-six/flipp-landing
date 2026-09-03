@@ -58,7 +58,17 @@ Pushing to `main` ships it.
 
 The page makes no claim that cannot be checked in the app's source: there is no
 account system, no analytics, no ad SDK and no payment code in Flipp, which is why
-the page says so plainly. There are no store badges, invented review counts or
+the page says so plainly.
+
+**Nib changed what is true here, and the page was corrected for it.** Flipp now
+has exactly one server — `api/nib.ts`, a proxy that exists so the Gemini key never
+ships inside the app — and pressing *Read these with Nib* sends that page of notes
+to it. So the page no longer says "nothing leaves the phone", "Flipp has no server
+of its own" or "entirely offline"; it says studying runs on the device and names
+Nib as the single exception, including that Google may use free-tier data to
+improve their models. That wording mirrors the app's own privacy card in
+`src/app/settings.tsx`, which is the source of truth. **If the app's network
+behaviour changes again, these claims must be re-checked before shipping.** There are no store badges, invented review counts or
 testimonials, and the roadmap line (Android APK and browser today, iOS not a
 current target) reflects the actual state of the project.
 

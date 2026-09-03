@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Flipp — your notes go in, a real exam comes out</title>
-<meta name="description" content="Paste your notes. Flipp writes the questions — seven kinds of them — then hands you a paper to sit. Works entirely offline. No account, no ads, nothing leaves your device." />
+<meta name="description" content="Paste your notes. Flipp writes the questions — seven kinds of them — then hands you a paper to sit. Studying runs offline on your device. No account, no ads, no tracking." />
 <meta name="theme-color" content="#FAF3E1" />
 <meta name="color-scheme" content="light" />
 <link rel="icon" href="img/favicon.png" />
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Flipp — your notes go in, a real exam comes out" />
-<meta property="og:description" content="Paste your notes. Flipp writes the questions, then hands you a paper to sit. Entirely offline." />
+<meta property="og:description" content="Paste your notes. Flipp writes the questions, then hands you a paper to sit. Studying runs offline on your device." />
 <meta property="og:image" content="img/flipp-icon.png" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -136,6 +136,12 @@
       <path d="M15.4 3.4l5.2 5.2L9.2 20H4v-5.2L15.4 3.4Z" fill="none" stroke="var(--s)"/>
       <path d="M13.8 5l5.2 5.2M4 14.8L9.2 20" fill="none" stroke="var(--s)"/>
     </symbol>
+    <symbol id="i-nib" viewBox="0 0 24 24">
+      <path d="M12 2.4 19.2 14.6 12 21.6 4.8 14.6 12 2.4Z" fill="var(--f)"/>
+      <path d="M12 2.4 19.2 14.6 12 21.6 4.8 14.6 12 2.4Z" fill="none" stroke="var(--s)"/>
+      <path d="M12 13.6v8" fill="none" stroke="var(--s)"/>
+      <circle cx="12" cy="11.2" r="1.8" fill="none" stroke="var(--s)"/>
+    </symbol>
     <symbol id="i-download" viewBox="0 0 24 24">
       <path d="M4 14.2v4a2.2 2.2 0 0 0 2.2 2.2h11.6a2.2 2.2 0 0 0 2.2-2.2v-4Z" fill="var(--f)"/>
       <path d="M4 14.2v4a2.2 2.2 0 0 0 2.2 2.2h11.6a2.2 2.2 0 0 0 2.2-2.2v-4" fill="none" stroke="var(--s)"/>
@@ -161,6 +167,7 @@
   <nav class="nav-links" aria-label="Sections">
     <a href="#how">How it works</a>
     <a href="#formats">Question types</a>
+    <a href="#nib">Nib</a>
     <a href="#modes">Modes</a>
     <a href="#honest">Progress</a>
     <a href="#faq">FAQ</a>
@@ -309,6 +316,45 @@
   </div>
 </section>
 
+<!-- ═══════════ NIB ═══════════ -->
+<section class="band" id="nib">
+  <div class="wrap">
+    <p class="eyebrow reveal">NEW &mdash; MEET NIB</p>
+    <h2 class="reveal">When your notes aren&rsquo;t in neat lines.</h2>
+    <p class="sub reveal">Flipp reads patterns: <em>Term: meaning</em>, plain facts, short lists. Real notes
+      are messier than that — paragraphs of prose, a lecture PDF, a photo of someone else&rsquo;s handwriting.
+      Nib is the one who reads those.</p>
+
+    <div class="nib-grid">
+      <div class="nib-card reveal">
+        <svg class="ic ic-lg"><use href="#i-nib"/></svg>
+        <h3>He only writes what he can point at</h3>
+        <p>Every question Nib returns has to quote the line it came from, word for word, out of the notes
+          you sent. Anything he cannot find in your own writing is thrown away before you ever see it —
+          because a study app that invents a fact teaches it, then rewards you for repeating it back.</p>
+      </div>
+      <div class="nib-card reveal">
+        <svg class="ic ic-lg"><use href="#i-blank"/></svg>
+        <h3>Prose, PDFs and photographs</h3>
+        <p>Hand him a PDF, a JPEG, a PNG or a page you have simply typed out, and he gives back questions
+          in the same seven formats as everything else — they land in the review screen and you keep or
+          drop them one by one.</p>
+      </div>
+      <div class="nib-card reveal">
+        <svg class="ic ic-lg"><use href="#i-lock"/></svg>
+        <h3>Only ever when you ask</h3>
+        <p>Nothing is sent in the background. Nib reads one page, once, because you pressed the button —
+          and he is the only part of Flipp that talks to the network at all.</p>
+      </div>
+    </div>
+
+    <p class="nib-fine reveal"><b>The honest part:</b> Nib runs on Google&rsquo;s Gemini, reached through
+      Flipp&rsquo;s own reader so no API key ever ships inside the app. On the free tier Google may use what
+      is sent to improve their models, so keep anything genuinely private out of a reading. Readings are
+      counted in pages — 150 a week in the app, 20 in the browser.</p>
+  </div>
+</section>
+
 <!-- ═══════════ MODES ═══════════ -->
 <section class="band paper" id="modes">
   <span class="margin-line" aria-hidden="true"></span>
@@ -419,12 +465,14 @@
       <article class="card reveal"><svg class="ic ic-lg"><use href="#i-calendar"/></svg><h3>A planner you control</h3>
         <p>You set when you want to study and Flipp reminds you then. It does not decide on its own that
           today is a good day to nag you.</p></article>
-      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-offline"/></svg><h3>Genuinely offline</h3>
-        <p>Everything lives in a database on your device. Airplane mode changes nothing, because there was
-          never a request to fail.</p></article>
-      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-lock"/></svg><h3>Nothing leaves the phone</h3>
-        <p>No account to make, no server to send notes to, no analytics, no ads. Your notes are yours and
-          they stay where you put them.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-offline"/></svg><h3>Studying works offline</h3>
+        <p>Notes, questions, exams, marking and progress all run on your device. Airplane mode changes
+          nothing, because there was never a request to fail. Asking Nib to read something is the one
+          part that needs a connection.</p></article>
+      <article class="card reveal"><svg class="ic ic-lg"><use href="#i-lock"/></svg><h3>Nothing leaves unless you send it</h3>
+        <p>Your notes, answers and streak stay on the device. The single exception is pressing
+          <em>Read these with Nib</em>, which sends that one page to be read. No account, no sign-in,
+          no ads, no tracking, and no other call of any kind.</p></article>
       <article class="card reveal"><svg class="ic ic-lg"><use href="#i-sticker"/></svg><h3>Thirty hidden stickers</h3>
         <p>Achievements you find rather than tick off a list. They stay hidden until they are earned —
           no checklist to farm.</p></article>
@@ -467,11 +515,18 @@
       <details class="reveal"><summary>Do I need an account?</summary>
         <p>No. There is no sign-up, no email and no login screen. Open it and start.</p></details>
       <details class="reveal"><summary>Where do my notes actually go?</summary>
-        <p>Into a database on your own device, and nowhere else. Flipp has no server of its own, no analytics
-          and no ad code — there is no path for your notes to leave.</p></details>
+        <p>Into a database on your own device. They stay there unless you press <em>Read these with Nib</em>,
+          which sends that page — plus a random id, so your weekly allowance is yours — to Flipp's reader
+          and on to Google's Gemini. Nothing else is ever sent: no analytics, no ad code, no background
+          sync, no call you did not press a button for.</p></details>
+      <details class="reveal"><summary>So Google sees anything I give Nib?</summary>
+        <p>Yes, and it is worth being plain about it. Nib runs on Google's Gemini, and on the free tier
+          Google may use what is sent to improve their models. Keep anything genuinely private out of a
+          reading. Everything you type or paste yourself, and every exam you sit, never goes near it.</p></details>
       <details class="reveal"><summary>Does it really work offline?</summary>
-        <p>Yes. Question generation, exams, marking and progress all run locally. The one thing a connection
-          buys you is the first page load in the browser version.</p></details>
+        <p>Yes, for everything you do repeatedly. Writing questions from your notes, sitting exams, marking
+          and progress are all local — there is no network code in any of that path. Only Nib needs a
+          connection, and only when you ask him to read something.</p></details>
       <details class="reveal"><summary>What kind of notes work best?</summary>
         <p>Ordinary revision notes. Lines shaped <em>Term: meaning</em> give the richest questions; plain
           factual sentences and short lists work well too. Flipp tells you what it can use before you commit.</p></details>

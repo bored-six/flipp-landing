@@ -257,6 +257,20 @@ p{margin:0 0 1em}
 .cart-blank:hover{transform:none;box-shadow:none}
 .blank-q{font-family:var(--hand);font-size:1.14rem;text-align:center;color:var(--dim)}
 
+/* ─────────── nib ─────────── */
+.nib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:20px;margin-top:34px}
+.nib-card{background:var(--surface);border:2.5px solid var(--edge);border-radius:var(--derp-a);
+  padding:24px 22px;box-shadow:4px 5px 0 var(--shadow-2)}
+.nib-card:nth-child(2){transform:rotate(.5deg)} .nib-card:nth-child(3){transform:rotate(-.4deg)}
+.nib-card h3{margin-top:12px}
+.nib-card p{color:var(--dim);font-size:.95rem;margin:0}
+/* The Gemini caveat is a promise, so it gets the gold note treatment rather
+   than being buried in small print. */
+.nib-fine{margin-top:24px;background:var(--gold-wash);
+  border:2px solid color-mix(in srgb,var(--gold) 50%,transparent);border-radius:var(--derp-b);
+  padding:18px 22px;color:var(--gold);font-size:.95rem;transform:rotate(-.3deg)}
+.nib-fine b{font-family:var(--chunk)}
+
 /* ─────────── honest progress ─────────── */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,54px);align-items:start;margin-top:30px}
 @media (max-width:880px){.split{grid-template-columns:1fr}}
