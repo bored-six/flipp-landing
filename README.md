@@ -76,6 +76,17 @@ Then open <http://localhost:4173>.
 Deployed on Vercel as a static site — no build command, no output directory.
 Pushing to `main` ships it.
 
+The site answers on two addresses:
+
+| | |
+|---|---|
+| **https://flipphq.vercel.app** | the one to share, and the `canonical` |
+| https://flipp-landing-nine.vercel.app | Vercel's auto-generated original, kept alive so links already sent still work |
+
+Both point at the same production deployment. `og:url` and `og:image` are
+absolute against the `flipphq` address, because most platforms will not resolve
+a relative image when generating a share preview.
+
 ## Honesty notes
 
 The page makes no claim that cannot be checked in the app's source: there is no
