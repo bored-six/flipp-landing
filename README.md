@@ -110,11 +110,16 @@ current target) reflects the actual state of the project.
 The **Download for Android** buttons serve the APK itself:
 
 ```
-https://github.com/bored-six/flipp-landing/releases/download/v1.0.0/flipp-1.0.0.apk
+https://github.com/bored-six/flipp-landing/releases/download/v1.0.0-build2/flipp-1.0.0-build2.apk
 ```
 
+Currently **versionCode 2**, built from `cf56c32` — the first build with Nib in
+it. The app version string is still `1.0.0`, which is why the tag carries the
+build number: two different binaries must never share a filename, or a download
+folder cannot tell you which one you have.
+
 **The APK is a GitHub Release asset and is deliberately not in this repo.** It is
-95.7 MB — GitHub hard-blocks files over 100 MB, warns over 50 MB, and anything
+119.6 MB — GitHub hard-blocks files over 100 MB, warns over 50 MB, and anything
 committed stays in history forever, so every future build would add another
 ~95 MB to every clone. Release assets have a 2 GB limit, are CDN-backed, cost no
 Vercel bandwidth, and GitHub already serves them with
